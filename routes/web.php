@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\GoalController;
+use App\Http\Controllers\FollowController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -35,7 +36,10 @@ Route::patch('/goals/{id}', [GoalController::class, 'update'])->name('goals.upda
 Route::patch('/goals/{id}', [GoalController::class, 'destroy'])->name('goals.destroy');
 Route::patch('/goals/{id}/complete', [GoalController::class, 'complete'])->name('goals.complete');
 
-
+//フォロー画面
+Route::get('/follow', function () {
+    return view('follow');
+});
 
 
 //投稿画面
@@ -53,6 +57,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/pit', [GoalController::class, 'pit'])->name('pit');
+    Route::get('/follow', [FollowController::class, 'index'])->name('users.index');
+    Route::post('/follow/{user}', [FollowController::class, 'follow'])->name('follow');
+    Route::delete('/unfollow/{user}', [FollowController::class, 'unfollow'])->name('unfollow');
 });
 
 Route::resource('posts', PostController::class)

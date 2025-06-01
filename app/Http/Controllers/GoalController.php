@@ -30,6 +30,7 @@ class GoalController extends Controller
       ]);
 
       $goal = new Goal();
+      //id()がVSCodeではエラー表示されるが、実行時には問題ない
       $goal->user_id = auth()->id();
       $goal->goal_title = $request->input('goal_title');
       $goal->goal_content = $request->input('goal_content');
