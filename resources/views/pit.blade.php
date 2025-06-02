@@ -17,12 +17,20 @@
         <p>状態：{{ $goal->is_completed ? '達成済み' : '未達成' }}</p>
         <a href="{{ route('goals.edit', $goal->id) }}">編集</a>
         @if (!$goal->is_completed)
-          <form action="{{ route('goals.complete', $goal->id) }}" method="POST" style="display:inline;">
+          <!-- <form action="{{ route('goals.complete', $goal->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('PATCH')
             <button type="submit">目標達成！</button>
+          </form> -->
+          <form action="{{ route('goals.complete', $goal->id) }}" method="POST">
+          @csrf
+              @if (!$goal->is_completed)
+                  <button type="submit" class="btn btn-success">達成する</button>
+              @else
+                  <span class="text-muted">達成済み</span>
+              @endif
           </form>
-        @endif
+          @endif
       </div>    
     @endforeach
     <a href="logout.php">ログアウト</a>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Goal;
+use App\Models\Post;
 
 
 class GoalController extends Controller
@@ -104,10 +105,26 @@ class GoalController extends Controller
   }
 
   public function complete(Request $request, $id)
-  {
-      $goal = Goal::findOrFail($id);
-      $goal->is_completed = true;
-      $goal->save();
+  {    
+    $goal = Goal::findOrFail($id);
+
+    //自分の目標か確認
+    if ($goal->user_id !== Auth::id()) {
+      abort(403, 'Unauthorized action.');
+    }
+
+    //既に完了している場合はエラー
+    if ($goal->is_completed) {
+        return redirect()->route('pit')->with('error', 'この目標は既に達成済みです。');
+    }
+
+    $goal->is_completed = true;
+    $goal->save();
+
+    Post::create([
+      'user_id' => Auth::id(),
+      'content' => '目標「' . $goal->goal_title . '」を達成しました！',
+    ]);
 
       return redirect()->route('pit')->with('success', '目標を達成しました！');
   }

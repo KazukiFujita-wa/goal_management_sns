@@ -46,11 +46,15 @@ Route::get('/follow', function () {
 Route::get('/post', function () {
     return view('post');
 });
-//目標設定画面
 
+//目標設定画面
 Route::get('/goal_set', function () {
     return view('goal_set');
 });
+
+//目標達成画面
+Route::post('/goals/{goal}/complete', [GoalController::class, 'complete'])->name('goals.complete');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
