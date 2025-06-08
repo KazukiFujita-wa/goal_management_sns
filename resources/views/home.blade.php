@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <title>投稿一覧</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
+@extends('layout')
+
+@section('title','投稿一覧') 
+
+@section('content')
   <body>
     <h1>投稿一覧</h1>
     @foreach ($posts as $post)
@@ -14,8 +12,7 @@
         <p></p>投稿日：{{ $post->created_at->format('Y年m月d日 H:i') }}</p>
       </div>    
     @endforeach
-    <a href="logout.php">ログアウト</a>
-    <a href="post.php">投稿画面へ進む</a>
-    <a href="mypage.php">マイページを表示する</a>
   </body>
 </html>
+
+@endsection

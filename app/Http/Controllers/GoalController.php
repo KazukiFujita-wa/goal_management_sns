@@ -22,7 +22,10 @@ class GoalController extends Controller
     return view('pit', compact('user', 'goals', 'totalGoals', 'completedGoals'));
     
   }
-  public function create() {}
+  public function create() {
+
+    return view('goal_set');
+  }
   public function store(Request $request) 
   {
       $request->validate([
@@ -87,7 +90,6 @@ class GoalController extends Controller
     return redirect()->route('pit')->with('success', '目標を削除しました！');
 
   }
-
   public function pit()
   {
     //ユーザーの目標数を取得

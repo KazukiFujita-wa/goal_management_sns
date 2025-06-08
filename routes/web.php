@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\PitController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -26,8 +27,13 @@ Route::get('/test', function () {
     return view('test');
 });
 
+//ルーティングの設定
+//ピット画面
+Route::get('/pit', [PitController::class, 'index'])->name('pit');
 //ホーム画面
 Route::get('/home', [PostController::class, 'index'])->name('home');
+//目標設定画面
+Route::get('/goal_set', [GoalController::class, 'create'])->name('goal_set.create');
 
 //プロフィール画面
 Route::get('/pit', [GoalController::class, 'index'])->name('pit');
@@ -72,6 +78,6 @@ Route::resource('posts', PostController::class)
 
 Route::resource('goals', GoalController::class)
     ->middleware(['auth'])
-    ->only(['store', 'index', 'show', 'edit', 'update', 'destroy']);
+    ->only(['store', 'index', 'show', 'edit', 'update', 'destroy', 'create']);
 
 require __DIR__.'/auth.php';

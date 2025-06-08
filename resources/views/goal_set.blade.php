@@ -1,3 +1,8 @@
+@extends('layout')
+
+@section('goal_set','目標設定') 
+
+@section('content')
 
 <!DOCTYPE html>
 <html lang="ja">

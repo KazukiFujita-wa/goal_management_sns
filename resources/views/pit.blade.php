@@ -1,3 +1,9 @@
+@extends('layout')
+
+@section('title','投稿一覧') 
+
+@section('content')
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -7,7 +13,7 @@
   </head>
   <body>
     <h1>ピット</h1>
-    <h2>{{ auth()->user()->name }}さんのプロフィール</h2>
+    <h2>{{ auth()->user()->name }}さんの目標一覧</h2>
     <p>設定した目標の数：{{ $totalGoals }}件</p>
     <p>達成した目標の数：{{ $completedGoals }}件</p>
     @foreach ($goals as $goal)
