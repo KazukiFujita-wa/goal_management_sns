@@ -38,4 +38,10 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')->with('success', '投稿が完了しました！');
     }
+
+    public function create()
+    {
+        // 投稿作成ページを表示
+        return view('post');
+    }
 }

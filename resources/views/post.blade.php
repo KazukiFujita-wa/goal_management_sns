@@ -1,3 +1,8 @@
+@extends('layout')
+
+@section('post','投稿画面') 
+
+@section('content')
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -14,6 +19,6 @@
     <textarea name="content"></textarea>
     <button type="submit">投稿する</button>
 </form>
-    <p><a href="home.php">ホームに戻る</a></p>
+    <p>    <a href="{{ route('posts.index') }}">ホームに戻る</a></p>
   </body>
 </html>

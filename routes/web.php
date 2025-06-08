@@ -32,6 +32,8 @@ Route::get('/test', function () {
 Route::get('/pit', [PitController::class, 'index'])->name('pit');
 //ホーム画面
 Route::get('/home', [PostController::class, 'index'])->name('home');
+// 投稿画面
+Route::get('/posts', [PostController::class, 'create'])->name('posts.create');
 //目標設定画面
 Route::get('/goal_set', [GoalController::class, 'create'])->name('goal_set.create');
 
@@ -46,7 +48,6 @@ Route::patch('/goals/{id}/complete', [GoalController::class, 'complete'])->name(
 Route::get('/follow', function () {
     return view('follow');
 });
-
 
 //投稿画面
 Route::get('/post', function () {
@@ -74,7 +75,7 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('posts', PostController::class)
     ->middleware(['auth'])
-    ->only(['store', 'index', 'show', 'edit', 'update', 'destroy']);
+    ->only(['store', 'index', 'show', 'edit', 'update', 'destroy', 'create']);
 
 Route::resource('goals', GoalController::class)
     ->middleware(['auth'])

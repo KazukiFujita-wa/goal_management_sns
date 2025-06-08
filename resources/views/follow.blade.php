@@ -1,3 +1,9 @@
+@extends('layout')
+
+@section('title','投稿一覧') 
+
+@section('content')
+
 <!DOCTYPE html>
 <h1>ユーザー一覧</h1>
 

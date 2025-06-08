@@ -21,26 +21,21 @@
         <p><strong>{{ $goal->goal_title }}</strong></p>
         <p><strong>{{ $goal->goal_content }}</strong></p>
         <p>状態：{{ $goal->is_completed ? '達成済み' : '未達成' }}</p>
-        <a href="{{ route('goals.edit', $goal->id) }}">編集</a>
-        @if (!$goal->is_completed)
-          <!-- <form action="{{ route('goals.complete', $goal->id) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('PATCH')
-            <button type="submit">目標達成！</button>
-          </form> -->
-          <form action="{{ route('goals.complete', $goal->id) }}" method="POST">
-          @csrf
-              @if (!$goal->is_completed)
-                  <button type="submit" class="btn btn-success">達成する</button>
-              @else
-                  <span class="text-muted">達成済み</span>
+        <div class="btn-area">
+          <a href="{{ route('goals.edit', $goal->id) }}" class="btn">編集</a>
+          @if (!$goal->is_completed)
+            <!-- <form action="{{ route('goals.complete', $goal->id) }}" method="POST"> -->
+            <form action="{{ route('goals.complete', $goal->id) }}" method="POST" class="inline-form">
+              @csrf
+                @if (!$goal->is_completed)
+                    <button type="submit" class="btn btn-success" action="goals.complete">達成する</button>
+                @else
+                    <span class="text-muted">達成済み</span>
               @endif
-          </form>
-          @endif
+            </form>
+            @endif
+          </div>
       </div>    
     @endforeach
-    <a href="logout.php">ログアウト</a>
-    <a href="post.php">投稿画面へ進む</a>
-    <a href="mypage.php">マイページを表示する</a>
   </body>
 </html>

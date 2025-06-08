@@ -69,6 +69,10 @@ button:hover {
 
 .btn-area {
   margin-top: 1rem;
+  display: flex;
+  gap: 1rem; /* ボタン間のスペース */
+  align-items: center;
+
 }
 
 .btn {
@@ -81,6 +85,21 @@ button:hover {
   font-size: 0.9rem;
   margin-right: 0.5rem;
   transition: background 0.3s;
+}
+
+.btn-success {
+  background-color: #00AEEF;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-success:hover {
+  background-color: #008ec9;
 }
 
 .btn:hover {
@@ -112,3 +131,38 @@ button:hover {
 .post-card p {
   margin: 6px 0;
 }
+
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #FFF6E5; /* ページ全体の背景と統一 */
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 1rem;
+}
+
+.nav-container a {
+  color: #00AEEF; /* メインアクセントカラー */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-container a:hover {
+  color: #008ec9;
+}
+
+.inline-form {
+  display: inline;
+  margin: 0;
+}
+
